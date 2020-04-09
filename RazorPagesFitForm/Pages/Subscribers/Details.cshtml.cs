@@ -23,18 +23,35 @@ namespace RazorPagesFitForm.Pages.Subscribers
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return Page();
             }
 
-            Subscribers = await _context.Subscribers.FirstOrDefaultAsync(m => m.Id == id);
+            _context.Attach(Subscribers).State = EntityState.Modified;
 
-            if (Subscribers == null)
+            try
             {
-                return NotFound();
+                await _context.SaveChangesAsync();
             }
-            return Page();
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!SubscribersExists(Subscribers.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToPage("./Index");
+        }
+
+        private bool SubscribersExists(object iD)
+        {
+            throw new NotImplementedException();
         }
     }
 }

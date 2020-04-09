@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id:int?}"
 @model RazorPagesFitForm.Pages.Subscribers.DeleteModel
 
 @{
@@ -31,7 +31,7 @@
             @Html.DisplayFor(model => model.Subscribers.SubDate)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Subscribers.Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |

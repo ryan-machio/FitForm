@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace RazorPagesFitForm.Models
 {
@@ -12,8 +10,9 @@ namespace RazorPagesFitForm.Models
         public int Id { get; set; }
         public string Name{ get; set; }
         public string Email { get; set; }
+
+        [Display(Name = "Subscribe Date")]
         [DataType(DataType.Date)]
         public DateTime SubDate{ get; set; }
-        
     }
 }
